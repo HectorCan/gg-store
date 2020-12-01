@@ -1,120 +1,94 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v3.0.0-alpha.1
+* @link https://coreui.io
+* Copyright (c) 2019 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>CoreUI Free Bootstrap Admin Template</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Icons-->
+    <link href="{{ asset('css/free.min.css') }}" rel="stylesheet"> <!-- icons -->
+    <link href="{{ asset('css/flag-icon.min.css') }}" rel="stylesheet"> <!-- icons -->
+    <!-- Main styles for this application-->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
-  <!-- CSRF Token -->
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+@yield('css')
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+<!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        // Shared ID
+        gtag('config', 'UA-118965717-3');
+        // Bootstrap ID
+        gtag('config', 'UA-118965717-5');
+    </script>
 
-  <!-- Fonts -->
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-  <!-- Styles -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/css/bootstrap-material-design.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendors/sidebarjs/sidebarjs.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendors/fontawesome/css/all.min.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/coreui-chartjs.css') }}" rel="stylesheet">
 </head>
-<body>
-<div id="app">
-  <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-    <div class="container-fluid">
-      <span>
-        <button id="sidebar-toggle" class="btn btn-sm" type="button">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" style="margin-right: 0px;" href="{{ url('/') }}">
-          {{ config('app.name', 'GG-STORE') }}
-        </a>
-      </span>
-      <div id="navbarSupportedContent">
-        <!-- Left Side Of Navbar -->
-        <ul class="navbar-nav mr-auto">
 
-        </ul>
 
-        <!-- Right Side Of Navbar -->
-        <ul class="navbar-nav ml-auto">
-          <!-- Authentication Links -->
-          @guest
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-            @if (Route::has('register'))
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-              </li>
-            @endif
-          @else
-            <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }}
-              </a>
 
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
-                </a>
+<body class="c-app">
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                  @csrf
-                </form>
-              </div>
-            </li>
-          @endguest
-        </ul>
-      </div>
+    @include('dashboard.shared.nav-builder')
+
+    @include('dashboard.shared.header')
+
+    <div class="c-body">
+
+        <main class="c-main">
+
+            @yield('content')
+
+        </main>
+        @include('dashboard.shared.footer')
     </div>
-  </nav>
-
-  <div class="row" style="margin: 0px;">
-    <div id="sidebar-left" class="col sidebar" style="max-width: 250px; padding: 0px;">
-      <div class="card" style="height: 100%;">
-        <div class="card-body" style="overflow-y: auto;">
-          Menu
-        </div>
-      </div>
-    </div>
-    <div class="col" style="padding: 0px;">
-      <main class="py-4">
-        @yield('content')
-      </main>
-    </div>
-  </div>
 </div>
 
-<script src="{{ asset('assets/vendors/jquery/jquery.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/sidebarjs/sidebarjs.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/vendors/fontawesome/css/all.min.js') }}" type="text/javascript"></script>
 
-<script>
-  function fixSize() {
-    var h = $(window).height() - 58.2;
-    $('.sidebar').css('height', h);
-  }
 
-  $(document).ready(function () {
-    fixSize();
+<!-- CoreUI and necessary plugins-->
+<script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
+<script src="{{ asset('js/coreui-utils.js') }}"></script>
+@yield('javascript')
 
-    $('#sidebar-toggle').click(function () {
-      var ls = $('#sidebar-left');
-    });
-  });
 
-  $(window).resize(function () {
-    fixSize();
-  });
-</script>
-@yield('scripts')
+
+
 </body>
 </html>
