@@ -30,11 +30,11 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:100',
             'stock' => 'required|integer|min:0',
-            'price' => 'required|decimal',
+            'price' => 'required|numeric',
         ]);
 
         if (!$validator->fails()) {
-            
+
             $Product = Product::create([
                 'name' => $request->input('name'),
                 'stock' => $request->input('stock'),
@@ -46,7 +46,7 @@ class ProductController extends Controller
             }
 
             return Response()->json(['m' => 'Error, try again later'], 422);
-            
+
         }
 
         return Response()->json(['errors' => $validator->errors()], 422);
@@ -58,7 +58,7 @@ class ProductController extends Controller
             'id'    => 'required|integer',
             'name' => 'required|string|max:100',
             'stock' => 'required|integer|min:0',
-            'price' => 'required|decimal',
+            'price' => 'required|numeric',
         ]);
 
         if (!$validator->fails()) {
@@ -66,22 +66,22 @@ class ProductController extends Controller
             if (isset($Product->id)){
                 $Product->name = $request->input('name');
                 $Product->stock = $request->input('stock');
-                $Product->price = $request->input('price');    
+                $Product->price = $request->input('price');
                 $Product->Save();
                 return Response()->json(['m' => 'Product has been updated'], 200);
             }
 
             return Response()->json(['m' => 'Error, try again later'], 422);
-            
+
         }
 
         return Response()->json(['errors' => $validator->errors()], 422);
     }
 
- 
+
     public function get(Request $request)
     {
-        
+
     }
 
     public function delete(Request $request)
