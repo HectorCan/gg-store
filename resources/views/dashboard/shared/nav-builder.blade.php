@@ -65,8 +65,8 @@ if(!function_exists('renderDropdown')){
                         <a class="c-sidebar-nav-dropdown-toggle" href="#"><i class="fa fa-user"></i> User Maintenance</a>
                         <ul class="c-sidebar-nav-dropdown-items">
                             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('maint.u.permission.index') }}"> Permission</a></li>
-                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('maint.u.permission.index') }}"> Role</a></li>
-                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('maint.u.permission.index') }}"> User</a></li>
+                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('maint.u.role.index') }}"> Role</a></li>
+                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('maint.u.user.index') }}"> User</a></li>
                         </ul>
                     </li>
                 </ul>

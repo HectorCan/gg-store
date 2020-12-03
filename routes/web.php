@@ -31,15 +31,27 @@ Route::group(['middleware' => 'auth'],function () {
     });
 
     Route::group(['namespace' => 'Maintenance', 'prefix' => 'Maintenance'], function () {
-      Route::group(['namespace' => 'User', 'prefix' => 'User'], function () {
+      Route::group(['namespace' => 'User', 'prefix' => 'User Maintenance'], function () {
           Route::prefix('Permission')->group(function () {
               Route::get('/', 'PermissionController@index')->name('maint.u.permission.index');
-
               Route::post('/dt', 'PermissionController@dt')->name('maint.u.permission.dt');
               Route::post('/', 'PermissionController@store')->name('maint.u.permission.store');
               Route::get('/get', 'PermissionController@get')->name('maint.u.permission.get');
               Route::put('/', 'PermissionController@update')->name('maint.u.permission.update');
               Route::delete('/', 'PermissionController@delete')->name('maint.u.permission.delete');
+          });
+
+          Route::prefix('Role')->group(function () {
+              Route::get('/', 'RoleController@index')->name('maint.u.role.index');
+              Route::post('/dt', 'RoleController@dt')->name('maint.u.role.dt');
+              Route::post('/', 'RoleController@store')->name('maint.u.role.store');
+              Route::get('/get', 'RoleController@get')->name('maint.u.role.get');
+              Route::put('/', 'RoleController@update')->name('maint.u.role.update');
+              Route::delete('/', 'RoleController@delete')->name('maint.u.role.delete');
+          });
+
+          Route::prefix('User')->group(function () {
+              Route::get('/', 'UserController@index')->name('maint.u.user.index');
           });
       });
     });

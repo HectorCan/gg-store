@@ -78,7 +78,7 @@ class PermissionController extends Controller
     public function get(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id'   => 'required|integer',
+            'id' => 'required|integer',
         ]);
 
         if (!$validator->fails()) {
@@ -104,7 +104,6 @@ class PermissionController extends Controller
             Permission::where('id', $request->input('id'))->delete();
 
             return Response()->json(['m' => 'Permission has been deleted'], 200);
-
         }
 
         return Response()->json(['errors' => $validator->errors()], 422);

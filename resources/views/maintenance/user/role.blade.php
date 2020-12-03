@@ -56,6 +56,17 @@
                                     <input type="text" name="name" class="form-control form-control-sm" value="" placeholder="Name" required>
                                 </div>
                             </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="" class="control-label"><span class="text-danger">*</span> Permissions</label>
+                                    <select name="perms[]" class="form-control form-control-sm custom-select"multiple>
+                                        @foreach($perms as $perm)
+                                            <option value="{{ $perm->id }}">{{ $perm->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -75,6 +86,17 @@
                                 <div class="form-group">
                                     <label for="" class="control-label"><span class="text-danger">*</span> Name</label>
                                     <input type="text" name="name" class="form-control form-control-sm" value="" placeholder="Name" required>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="" class="control-label"><span class="text-danger">*</span> Permissions</label>
+                                    <select name="perms[]" class="form-control form-control-sm custom-select"multiple>
+                                        @foreach($perms as $perm)
+                                            <option value="{{ $perm->id }}">{{ $perm->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +121,7 @@
                 serverSide: true, destroy: true, orderCellsTop: false, sType:'string', autoWidth: false, scrollY: 450, scrollX: true,
                 order: [[0 , 'asc']],
                 ajax: {
-                    url: '{{ route('maint.u.permission.dt') }}',
+                    url: '{{ route('maint.u.role.dt') }}',
                     dataType: 'json',
                     type: 'POST',
                     data: function (d) {
@@ -115,9 +137,9 @@
                     { name: 'created_at', data: 'created_at', width: '200px', defaultContent: '-', orderable: false },
                     { name: 'updated_at', data: 'updated_at', width: '200px', defaultContent: '-', orderable: false },
                     { name: 'actions', data: 'actions', width: '300px', defaultContent: '-', orderable: false, render: function (d, t, r) {
-                        return '<button class="selrow btn btn-sm btn-info btn-edit">Edit</button> ' +
-                            '<button class="selrow btn btn-sm btn-danger btn-del">Delete</button>';
-                    }}
+                            return '<button class="selrow btn btn-sm btn-info btn-edit">Edit</button> ' +
+                                '<button class="selrow btn btn-sm btn-danger btn-del">Delete</button>';
+                        }}
                 ],
                 drawCallback: function (settings) {
                     var tbl = $(this);
@@ -132,34 +154,35 @@
                         display_form('e');
                         c.find('[name="id"]').val(d.id);
                         c.find('[name="name"]').val(d.name);
+                        c.find('[name="perms[]"]').val(d.perms ? d.perms.split(',') : []);
 
                         $('#modal').modal('show');
                     });
 
                     tbl.find('.btn-del').click(function () {
-                       if (confirm('are you sure?')) {
-                           $.ajax('{{ route('maint.u.permission.delete') }}', {
-                               type: 'DELETE',
-                               data: {
-                                   _token: $('meta[name="csrf-token"]').attr('content'),
-                                   id: tbldt.row(tbldt.selrow).data().id
-                               },
-                               success: function (r) {
-                                   if (r.m) {
-                                       alert(r.m);
-                                       tbldt.draw();
-                                   }
-                               },
-                               error: function (e) {
-                                   if (e.responseJSON && e.responseJSON.m) {
-                                       alert(e.responseJSON.m)
-                                   }
-                               },
-                               always: function () {
+                        if (confirm('are you sure?')) {
+                            $.ajax('{{ route('maint.u.role.delete') }}', {
+                                type: 'DELETE',
+                                data: {
+                                    _token: $('meta[name="csrf-token"]').attr('content'),
+                                    id: tbldt.row(tbldt.selrow).data().id
+                                },
+                                success: function (r) {
+                                    if (r.m) {
+                                        alert(r.m);
+                                        tbldt.draw();
+                                    }
+                                },
+                                error: function (e) {
+                                    if (e.responseJSON && e.responseJSON.m) {
+                                        alert(e.responseJSON.m)
+                                    }
+                                },
+                                always: function () {
 
-                               }
-                           });
-                       }
+                                }
+                            });
+                        }
                     });
                 },
                 initComplete: function () {
@@ -185,7 +208,7 @@
             });
 
             $('#modal').find('#fm-create').ajaxForm({
-                url: '{{ route('maint.u.permission.store') }}',
+                url: '{{ route('maint.u.role.store') }}',
                 type: 'POST',
                 success:  function (r) {
                     if (r.m) {
@@ -208,7 +231,7 @@
             });
 
             $('#modal').find('#fm-edit').ajaxForm({
-                url: '{{ route('maint.u.permission.update') }}',
+                url: '{{ route('maint.u.role.update') }}',
                 type: 'PUT',
                 success:  function (r) {
                     if (r.m) {
