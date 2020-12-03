@@ -57,12 +57,29 @@ if(!function_exists('renderDropdown')){
                 @endif
             @endforeach
         @endif
-
+            <li class="c-sidebar-nav-item">
+                <a class="c-sidebar-nav-link" href="{{ route('home') }}">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-home') }}"></use>
+                    </svg>
+                    Home
+                </a>
+            </li>
             <li class="c-sidebar-nav-dropdown">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#"><i class="fa fa-baby"></i> Maintenance</a>
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <svg class="c-sidebar-nav-icon">
+                        <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-life-ring') }}"></use>
+                    </svg>
+                    Maintenance
+                </a>
                 <ul class="c-sidebar-nav-dropdown-items">
                     <li class="c-sidebar-nav-dropdown">
-                        <a class="c-sidebar-nav-dropdown-toggle" href="#"><i class="fa fa-user"></i> User Maintenance</a>
+                        <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                            <svg class="c-sidebar-nav-icon">
+                                <use xlink:href="{{ asset('assets/icons/sprites/free.svg#cil-user') }}"></use>
+                            </svg>
+                            User Maintenance
+                        </a>
                         <ul class="c-sidebar-nav-dropdown-items">
                             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('maint.u.permission.index') }}"> Permission</a></li>
                             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('maint.u.role.index') }}"> Role</a></li>
