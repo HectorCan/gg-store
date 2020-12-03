@@ -144,6 +144,11 @@ class RoleController extends Controller
                 ->where('role_id', $request->input('id'))
                 ->delete();
 
+            DB::table('model_has_roles')
+                ->where('model_type', 'App\User')
+                ->where('role_id', $request->input('id'))
+                ->delete();
+
             Role::where('id', $request->input('id'))->delete();
 
             return Response()->json(['m' => 'Permission has been deleted'], 200);

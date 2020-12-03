@@ -52,6 +52,11 @@ Route::group(['middleware' => 'auth'],function () {
 
           Route::prefix('User')->group(function () {
               Route::get('/', 'UserController@index')->name('maint.u.user.index');
+              Route::post('/dt', 'UserController@dt')->name('maint.u.user.dt');
+              Route::post('/', 'UserController@store')->name('maint.u.user.store');
+              Route::get('/get', 'UserController@get')->name('maint.u.user.get');
+              Route::put('/', 'UserController@update')->name('maint.u.user.update');
+              Route::delete('/', 'UserController@delete')->name('maint.u.user.delete');
           });
       });
     });

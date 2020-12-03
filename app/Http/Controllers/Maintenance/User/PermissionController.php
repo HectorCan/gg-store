@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Maintenance\User;
 
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 
 use App\Http\Controllers\Controller;
@@ -101,6 +102,10 @@ class PermissionController extends Controller
         ]);
 
         if (!$validator->fails()) {
+            DB::table('role_has_permissions')
+                ->where('permission_id', $request->input('id'))
+                ->delete();
+
             Permission::where('id', $request->input('id'))->delete();
 
             return Response()->json(['m' => 'Permission has been deleted'], 200);
