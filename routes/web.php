@@ -29,6 +29,14 @@ Route::group(['middleware' => 'auth'],function () {
             Route::post('/', 'ArticleController@store')->name('inv.art.store');
         });
     });
+    Route::group(['prefix'=>'Product'],function(){
+        Route::get('/', 'ProductController@index')->name('product.index');
+        Route::post('/dt', 'ProductController@dt')->name('product.dt');
+        Route::post('/', 'ProductController@store')->name('product.store');
+        Route::get('/get', 'ProductController@get')->name('product.get');
+        Route::put('/', 'ProductController@update')->name('product.update');
+        Route::delete('/', 'ProductController@delete')->name('product.delete');
+    });
 
     Route::group(['namespace' => 'Maintenance', 'prefix' => 'Maintenance'], function () {
       Route::group(['namespace' => 'User', 'prefix' => 'User Maintenance'], function () {
