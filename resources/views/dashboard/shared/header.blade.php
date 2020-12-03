@@ -12,18 +12,18 @@
             <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div>
             <a class="dropdown-item" href="#">
                 <svg class="c-icon mr-2">
-                  <use xlink:href="{{ env('APP_URL', '') }}/icons/sprites/free.svg#cil-user"></use>
+                  <use xlink:href="{{ env('APP_URL', '') }}assets/icons/sprites/free.svg#cil-user"></use>
                 </svg> Profile
             </a>
             <a class="dropdown-item" href="#">
                 <svg class="c-icon mr-2">
-                  <use xlink:href="{{ env('APP_URL', '') }}/icons/sprites/free.svg#cil-settings"></use>
+                  <use xlink:href="{{ env('APP_URL', '') }}assets/icons/sprites/free.svg#cil-settings"></use>
                 </svg> Settings
             </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
                 <svg class="c-icon mr-2">
-                  <use xlink:href="{{ env('APP_URL', '') }}/icons/sprites/free.svg#cil-account-logout"></use>
+                  <use xlink:href="{{ env('APP_URL', '') }}assets/icons/sprites/free.svg#cil-account-logout"></use>
                 </svg><form action="{{ route('logout') }}" method="POST"> @csrf <button type="submit" class="btn btn-ghost-dark btn-block">Logout</button></form>
             </a>
         </div>
