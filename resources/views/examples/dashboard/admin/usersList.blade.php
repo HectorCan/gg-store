@@ -30,14 +30,14 @@
                               <td>{{ $user->menuroles }}</td>
                               <td>{{ $user->email_verified_at }}</td>
                               <td>
-                                <a href="{{ url('/users/' . $user->id) }}" class="btn btn-block btn-primary">View</a>
+                                <a href="{{ url('/user/' . $user->id) }}" class="btn btn-block btn-primary">View</a>
                               </td>
                               <td>
-                                <a href="{{ url('/users/' . $user->id . '/edit') }}" class="btn btn-block btn-primary">Edit</a>
+                                <a href="{{ url('/user/' . $user->id . '/edit') }}" class="btn btn-block btn-primary">Edit</a>
                               </td>
                               <td>
                                 @if( $you->id !== $user->id )
-                                <form action="{{ route('users.destroy', $user->id ) }}" method="POST">
+                                <form action="{{ route('user.destroy', $user->id ) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button class="btn btn-block btn-danger">Delete User</button>

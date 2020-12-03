@@ -75,5 +75,11 @@ mix.copy('node_modules/@coreui/icons/css/flag.min.css', 'public/css');
 mix.copy('node_modules/@coreui/icons/svg/flag', 'public/svg/flag');
 
 mix.copy('node_modules/@coreui/icons/sprites/', 'public/icons/sprites');
+
+mix.copy('node_modules/datatables.net/js/', destVendors + 'datatables.net/js/');
+mix.copy('node_modules/datatables.net-dt/css/', destVendors + 'datatables.net/css/');
+mix.copy('node_modules/datatables.net-dt/images/', destVendors + 'datatables.net/images/');
+
+mix.copy('node_modules/jquery-form/dist/', destVendors + 'jquery-form/js/')
 //images
 mix.copy('resources/assets', 'public/assets');

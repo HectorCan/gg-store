@@ -1,7 +1,5 @@
 <?php
-/*
-    $data = $menuel['elements']
-*/
+
 
 if(!function_exists('renderDropdown')){
     function renderDropdown($data){
@@ -9,7 +7,7 @@ if(!function_exists('renderDropdown')){
             echo '<li class="c-sidebar-nav-dropdown">';
             echo '<a class="c-sidebar-nav-dropdown-toggle" href="#">';
             if($data['hasIcon'] === true && $data['iconType'] === 'coreui'){
-                echo '<i class="' . $data['icon'] . ' c-sidebar-nav-icon"></i>';    
+                echo '<i class="' . $data['icon'] . ' c-sidebar-nav-icon"></i>';
             }
             echo $data['name'] . '</a>';
             echo '<ul class="c-sidebar-nav-dropdown-items">';
@@ -29,8 +27,8 @@ if(!function_exists('renderDropdown')){
     }
 }
 ?>
-
-      <div class="c-sidebar-brand"><img class="c-sidebar-brand-full" src="{{ env('APP_URL', '') }}/assets/brand/coreui-base-white.svg" width="118" height="46" alt="CoreUI Logo"><img class="c-sidebar-brand-minimized" src="assets/brand/coreui-signet-white.svg" width="118" height="46" alt="CoreUI Logo"></div>
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+      <div class="c-sidebar-brand"><img class="c-sidebar-brand-full" src="{{ env('APP_URL', '') }}/assets/brand/coreui-base-white.svg" width="118" height="46" alt="CoreUI Logo"><img class="c-sidebar-brand-minimized" src="{{ asset('assets/brand/coreui-signet-white.svg') }}" width="118" height="46" alt="CoreUI Logo"></div>
         <ul class="c-sidebar-nav">
         @if(isset($appMenus['sidebar menu']))
             @foreach($appMenus['sidebar menu'] as $menuel)
@@ -41,7 +39,7 @@ if(!function_exists('renderDropdown')){
                             @if($menuel['iconType'] === 'coreui')
                                 <i class="{{ $menuel['icon'] }} c-sidebar-nav-icon"></i>
                             @endif
-                        @endif 
+                        @endif
                         {{ $menuel['name'] }}
                         </a>
                     </li>
@@ -53,12 +51,26 @@ if(!function_exists('renderDropdown')){
                             @if($menuel['iconType'] === 'coreui')
                                 <i class="{{ $menuel['icon'] }} c-sidebar-nav-icon"></i>
                             @endif
-                        @endif 
+                        @endif
                         {{ $menuel['name'] }}
                     </li>
                 @endif
             @endforeach
         @endif
+
+            <li class="c-sidebar-nav-dropdown">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#"><i class="fa fa-baby"></i> Maintenance</a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    <li class="c-sidebar-nav-dropdown">
+                        <a class="c-sidebar-nav-dropdown-toggle" href="#"><i class="fa fa-user"></i> User Maintenance</a>
+                        <ul class="c-sidebar-nav-dropdown-items">
+                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('maint.u.permission.index') }}"> Permission</a></li>
+                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('maint.u.permission.index') }}"> Role</a></li>
+                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ route('maint.u.permission.index') }}"> User</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
         </ul>
         <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
     </div>
